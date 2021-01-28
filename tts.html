@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		document.addEventListener('click', function(e){
+			if ('speechSynthesis' in window) {
+
+			  var synthesis = window.speechSynthesis;
+
+			  // Get the first `en` language voice in the list
+			  var voice = synthesis.getVoices().filter(function(voice) {
+			    return voice.lang === 'en';
+			  })[0];
+
+			  // Create an utterance object
+			  var utterance = new SpeechSynthesisUtterance(`One of the crucial parts of our algorithm is the definition of
+different energy bins and bounding frequencies. In our system,
+we focused on the energy and frequency of the formants for each
+vowel, without taking into account the fundamental frequency
+component.` );
+			  console.log(voice);
+
+			  // Set utterance properties
+			  utterance.voice = voice;
+			  utterance.pitch = 1.5;
+			  utterance.rate = .75;
+			  utterance.volume = 0.8;
+
+			  // Speak the utterance
+			  synthesis.speak(utterance);
+
+			} else {
+			  console.log('Text-to-speech not supported.');
+			}
+		})
+		
+	</script>
+</body>
+</html>
